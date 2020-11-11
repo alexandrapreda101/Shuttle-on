@@ -17,7 +17,7 @@ Grupul țintă este reprezentat de persoanele care folosesc frecvent mijloacele 
 ### *Funcționalități*
 Aplicația permite crearea unui cont prin care utilizatorul poate sa partajeze o experiență după ce a folosit un mijloc de transport în comun.
 
-Pentru utilizatorii anonimi, aplicația va permite căutarea și vizualizarea intrărilor în platforma. Totodată, vor fi afișate atât cele mai populare locații și mijloace de transport aferente, cât și recenziile care au stârnit un interes crescut printre utilizatorii noștri
+Pentru utilizatorii anonimi, aplicația va permite căutarea și vizualizarea intrărilor în platforma. Totodată, vor fi afișate atât cele mai populare rute și mijloace de transport aferente, cât și recenziile care au stârnit un interes crescut printre utilizatorii noștri
 
 ### *Aplicații similare*
 
