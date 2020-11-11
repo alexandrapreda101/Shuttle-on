@@ -30,6 +30,12 @@ Pentru utilizatorii anonimi, aplicația va permite căutarea și vizualizarea in
 •	**Yelp** (Yelp este o rețea de socializare care permite utilizatorilor să posteze recenzii și să evalueze diverse afaceri)
 
 
+### *Schiță proiect*
+
+![Tech_web](https://user-images.githubusercontent.com/72069133/98843803-1d28d480-2454-11eb-82f2-e36038973052.png)
+
+
+
 
 
 
