@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('purple_puffs', 'root', 'password', {
+const sequelize = new Sequelize('purple_puffs', 'root', 'pass', {
     dialect: "mysql",
     host: "localhost"
 });
