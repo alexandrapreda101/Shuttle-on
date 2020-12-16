@@ -31,17 +31,17 @@ function Inregistrare() {
         {username: username, email: email, password: password}).then((response) =>{
             console.log(response);
             
-            history.push('/');
+            // history.push('/');
         })
 
-        if(validare()==true){
-        history.push('/')
-        window.location.reload();
-        alert('Contul a fost creat! Puteti sa va autentificati!')
-        }
-        else {
-            //alert('User')
-        }
+        // if(validare()==true){
+        // // history.push('/')
+        // window.location.reload();
+        // alert('Contul a fost creat! Puteti sa va autentificati!')
+        // }
+        // else {
+        //     //alert('User')
+        // }
 
 
 

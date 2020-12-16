@@ -44,7 +44,7 @@ function Autentificare() {
             setLoginStatus(response.data.message)
             alert('Username-ul sau parola este gresita')
           } else {
-            setLoginStatus(response.data[0].username)
+            setLoginStatus(response.data.username)
             window.location.reload();
           }
 
@@ -57,7 +57,7 @@ function Autentificare() {
     useEffect(() => {
       Axios.get("http://localhost:3001/autentificare").then((response) =>{
       if(response.data.loggedIn==true) {
-        setLoginStatus(response.data.user[0].username)
+        setLoginStatus(response.data.user.username)
         history.push('/')
         window.location.reload();
       } 
