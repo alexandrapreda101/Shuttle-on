@@ -1,6 +1,7 @@
 .formular{
     text-align: center;
 }
+
 .inputText{
     display: flex;
     flex-direction: column;
@@ -13,5 +14,11 @@
     height: 30px;
     margin: 10px;
     font-size: 25px;
+}
 
+.grad_aglomerare {
+    width: 200;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
