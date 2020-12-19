@@ -40,9 +40,28 @@ const User = sequelize.define('user', {
     email: Sequelize.STRING,
 });
 
-Recenzie.belongsTo(User);
 User.hasMany(Recenzie);
+Recenzie.belongsTo(User);
+app.use(express.json())
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    credentials: true
+}))
 
+
+app.use(cookieParser())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use(session({
+    key: "userId",
+    secret: "proiect_purple_puffs",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 60 * 60 * 24,
+        httpOnly: false,
+    },
+}))
 
 app.use('/', express.static('frontend'));
 
@@ -59,8 +78,8 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 app.post('/formular', (request, response) => {
-    Recenzie.create(request.body).then((result) => {
-        response.status(201).json(result);
+    Recenzie.create({...request.body,userId:request.session.user.id}).then((result) => {
+        response.status(201).json(result);  
     }).catch((err) => {
         response.status(500).send("Resursa nu a fost creata");
     });
@@ -127,28 +146,6 @@ app.delete('/formular/:id', (request, response) => {
 
 ////AUTENTIFICARE////
 
-app.use(express.json())
-app.use(cors({
-    origin: ["http://localhost:3000"],
-    methods: ["GET", "POST"],
-    credentials: true
-}))
-
-
-app.use(cookieParser())
-app.use(bodyParser.urlencoded({ extended: true }))
-
-app.use(session({
-    key: "userId",
-    secret: "proiect_purple_puffs",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        expires: 60 * 60 * 24,
-        httpOnly: false,
-    },
-}))
-
 
 
 app.post('/inregistrare', (req, res) => {
@@ -165,30 +162,28 @@ app.post('/inregistrare', (req, res) => {
 
 
 
-app.post('/formular', (req, res) => {
+// app.post('/formular', (req, res) => {
 
-    const punct_plecare = req.body.punct_plecare
-    const punct_sosire = req.body.punct_sosire
-    const mijloc_transport = req.body.mijloc_transport
-    const numarul = req.body.numarul
-    const ora_plecarii = req.body.ora_plecarii
-    const durata_calatoriei = req.body.durata_calatoriei
-    const grad_aglomerare = req.body.grad_aglomerare
-    const nivel_satisfactie = req.body.nivel_satisfactie
-    const alte_comentarii = req.body.alte_comentarii
+//     const punct_plecare = req.body.punct_plecare
+//     const punct_sosire = req.body.punct_sosire
+//     const mijloc_transport = req.body.mijloc_transport
+//     const numarul = req.body.numarul
+//     const ora_plecarii = req.body.ora_plecarii
+//     const durata_calatoriei = req.body.durata_calatoriei
+//     const grad_aglomerare = req.body.grad_aglomerare
+//     const nivel_satisfactie = req.body.nivel_satisfactie
+//     const alte_comentarii = req.body.alte_comentarii
 
-    const entry = Recenzie.create({
-        punct_plecare: punct_plecare, punct_sosire: punct_sosire, mijloc_transport: mijloc_transport,
-        numarul: numarul, ora_plecarii: ora_plecarii, durata_calatoriei: durata_calatoriei, grad_aglomerare: grad_aglomerare,
-        nivel_satisfactie: nivel_satisfactie, alte_comentarii: alte_comentarii, userId: req.session.user.id
-    },
-    
-        (err, result) => {
-            console.log(err);
-        })
-})
+//     console.log(req.session.user.dataValues.id);
 
-
+//     const entry = Recenzie.create({
+//         punct_plecare: punct_plecare, punct_sosire: punct_sosire, mijloc_transport: mijloc_transport,
+//         numarul: numarul, ora_plecarii: ora_plecarii, durata_calatoriei: durata_calatoriei, grad_aglomerare: grad_aglomerare,
+//         nivel_satisfactie: nivel_satisfactie, alte_comentarii:" MUIE", userId: 1
+//     },
+//     )
+//     console.log(entry);
+// })
 
 
 app.get("/autentificare", (req, res) => {
@@ -211,7 +206,6 @@ app.post('/autentificare', (req, res) => {
         .then((result) => {
             if (result) {
                 req.session.user = result
-                console.log(req.session.user)
                 res.status(200).send(result)
             } else {
                 res.status(401).send({ message: "Parola sau username-ul este gresit!" })
