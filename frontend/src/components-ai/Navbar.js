@@ -13,27 +13,27 @@ function Navbar() {
     let history = useHistory();
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/autentificare").then((response) =>{
-        if(response.data.loggedIn==true) {
-          setLoginStatus(response.data.user.username)
-        }
+        Axios.get("http://localhost:3001/autentificare").then((response) => {
+            if (response.data.loggedIn == true) {
+                setLoginStatus(response.data.user.username)
+            }
         })
-      }, [])
+    }, [])
 
-    
+
     const logOut = () => {
 
         document.cookie.split(";").forEach((c) => {
             document.cookie = c
-              .replace(/^ +/, "")
-              .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-          });
+                .replace(/^ +/, "")
+                .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+        });
 
 
         history.push('/')
         window.location.reload();
 
-      }
+    }
 
 
     return (
@@ -45,39 +45,39 @@ function Navbar() {
                     </Link>
 
                     <ul className='nav-menu'>
-                    
-                    {LogInStatus && (
-                    
-                    <li className='nav-item'>
-                            
-                            Buna, {LogInStatus}!
 
-                            <Link onClick={logOut}
-                                className='btn btn--primary btn--medium'
-                                style={{ textDecoration: 'none' }}>
-                                Log Out!
+                        {LogInStatus && (
+
+                            <li className='nav-item'>
+
+                                Buna, {LogInStatus}!
+
+                                <Link onClick={logOut}
+                                    className='btn btn--primary btn--medium'
+                                    style={{ textDecoration: 'none' }}>
+                                    Log Out!
                             </Link>
-                        </li>)} 
-                    
+                            </li>)}
 
-                    {!LogInStatus && (
-                    
-                    <li className='nav-item'>
-                            
-                            
-                            <Link to='/autentificare'
-                                className='btn btn--outline btn--medium'
-                                style={{ textDecoration: 'none' }}>
-                                Autentificare!
-                            </Link>
 
-                            <Link to='/inregistrare'
-                                className='btn btn--primary btn--medium'
-                                style={{ textDecoration: 'none' }}>
-                                Înregistrează-te!
+                        {!LogInStatus && (
+
+                            <li className='nav-item'>
+
+
+                                <Link to='/autentificare'
+                                    className='btn btn--outline btn--medium'
+                                    style={{ textDecoration: 'none' }}>
+                                    Autentificare!
                             </Link>
 
-                        </li>)} 
+                                <Link to='/inregistrare'
+                                    className='btn btn--primary btn--medium'
+                                    style={{ textDecoration: 'none' }}>
+                                    Înregistrează-te!
+                            </Link>
+
+                            </li>)}
 
                         {/* <li className='nav-item'>
                             
@@ -103,7 +103,7 @@ function Navbar() {
         </>
     )
 
-    
+
 }
 
 export default Navbar

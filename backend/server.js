@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser")
 const session = require("express-session")
 
 
-const sequelize = new Sequelize('purple_puffs', 'root', 'pass', {
+const sequelize = new Sequelize('purple_puffs', 'root', 'password', {
     dialect: "mysql",
     host: "localhost"
 });
@@ -26,7 +26,7 @@ const Recenzie = sequelize.define('review', {
     punct_plecare: Sequelize.STRING,
     punct_sosire: Sequelize.STRING,
     mijloc_transport: Sequelize.STRING,
-    numar: Sequelize.STRING,
+    numarul: Sequelize.STRING,
     ora_plecarii: Sequelize.STRING,
     durata_calatoriei: Sequelize.STRING,
     grad_aglomerare: Sequelize.STRING,
@@ -42,7 +42,7 @@ const User = sequelize.define('user', {
 
 Recenzie.belongsTo(User);
 User.hasMany(Recenzie);
-  
+
 
 app.use('/', express.static('frontend'));
 
@@ -161,9 +161,35 @@ app.post('/inregistrare', (req, res) => {
         (err, result) => {
             console.log(err);
         })
-
-
 })
+
+
+
+app.post('/formular', (req, res) => {
+
+    const punct_plecare = req.body.punct_plecare
+    const punct_sosire = req.body.punct_sosire
+    const mijloc_transport = req.body.mijloc_transport
+    const numarul = req.body.numarul
+    const ora_plecarii = req.body.ora_plecarii
+    const durata_calatoriei = req.body.durata_calatoriei
+    const grad_aglomerare = req.body.grad_aglomerare
+    const nivel_satisfactie = req.body.nivel_satisfactie
+    const alte_comentarii = req.body.alte_comentarii
+
+    const entry = Recenzie.create({
+        punct_plecare: punct_plecare, punct_sosire: punct_sosire, mijloc_transport: mijloc_transport,
+        numarul: numarul, ora_plecarii: ora_plecarii, durata_calatoriei: durata_calatoriei, grad_aglomerare: grad_aglomerare,
+        nivel_satisfactie: nivel_satisfactie, alte_comentarii: alte_comentarii, userId: req.session.user.id
+    },
+    
+        (err, result) => {
+            console.log(err);
+        })
+})
+
+
+
 
 app.get("/autentificare", (req, res) => {
     if (req.session.user) {

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import '../../App.css';
 import './Formular.css';
+import Axios from 'axios';
 
 import PropTypes from "prop-types";
 import Rating from "@material-ui/lab/Rating";
@@ -71,7 +73,7 @@ const useStyles = makeStyles({
     width: 200,
     display: 'flex',
     alignItems: 'center',
-    
+
   },
 });
 
@@ -85,68 +87,133 @@ export default function Formular() {
   const [hover2, setHover2] = React.useState(-1);
   const classes = useStyles();
 
+
+  const [punct_plecare, setPunctPlecare] = useState('');
+  const [punct_sosire, setPunctSosire] = useState('');
+  const [mijloc_transport, setMijlocTransport] = useState('');
+  const [numarul, setNumar] = useState('');
+  const [ora_plecarii, setOraPlecarii] = useState('');
+  const [durata_calatoriei, setDurataCalatorie] = useState('');
+  const [grad_aglomerare, setGradAglomerare] = useState('');
+  const [nivel_satisfactie, setNivelSatisfactie] = useState('');
+  const [alte_comentarii, setAlteComentarii] = useState('');
+
+  let history = useHistory();
+
+  const handlePunctPlecare = (e) => {
+    setPunctPlecare(e.target.value);
+  }
+  const handlePunctSosire = (e) => {
+    setPunctSosire(e.target.value);
+  }
+  const handleMijlocTransport = (e) => {
+    setMijlocTransport(e.target.value);
+  }
+  const handleNumar = (e) => {
+    setNumar(e.target.value);
+  }
+  const handleOraPlecarii = (e) => {
+    setOraPlecarii(e.target.value);
+  }
+  const handleDurataCalatoriei = (e) => {
+    setDurataCalatorie(e.target.value);
+  }
+  const handleGradAglomerare = (e) => {
+    setGradAglomerare(e.target.value);
+  }
+  const handleNivelSatisfactie = (e) => {
+    setNivelSatisfactie(e.target.value);
+  }
+  const handleAlteComentarii = (e) => {
+    setAlteComentarii(e.target.value);
+  }
+
+  const fctFrm = () => {
+    Axios.post('http://localhost:3001/formular',
+      {
+        punct_plecare: punct_plecare, punct_sosire: punct_sosire, mijloc_transport: mijloc_transport,
+        numarul: numarul, ora_plecarii: ora_plecarii, durata_calatoriei, grad_aglomerare: grad_aglomerare,
+        nivel_satisfactie: nivel_satisfactie, alte_comentarii
+      }).then((response) => {
+        console.log(response);
+        history.push('/');
+      })
+
+    if (validare() == true) {
+      history.push('/')
+      alert('Recenzia a fost inregistrata!')
+    }
+  }
+
+  function validare() {
+    return true
+  }
+
   return (
     <div className='formular'>
       <h1>Formular</h1>
       <div className='inputText'>
         <label>Punct plecare:</label>
-        <input type='text' name='punct_plecare' />
+        <input type='text' name='punct_plecare' onChange={handlePunctPlecare} />
         <label>Punct sosire:</label>
-        <input type='text' name='punct_sosire' />
+        <input type='text' name='punct_sosire' onChange={handlePunctSosire} />
         <label>Mijloc de transport:</label>
-        <input type='text' name='mijloc_transport' />
+        <input type='text' name='mijloc_transport' onChange={handleMijlocTransport} />
         <label>Numarul:</label>
-        <input type='text' name='numarul' />
+        <input type='text' name='numarul' onChange={handleNumar} />
         <label>Ora plecarii:</label>
-        <input type='text' name='ora_plecarii' />
+        <input type='text' name='ora_plecarii' onChange={handleOraPlecarii} />
         <label>Durata calatoriei:</label>
-        <input type='text' name='durata_calatoriei' />
+        <input type='text' name='durata_calatoriei' onChange={handleDurataCalatoriei} />
 
 
         <label>Grad aglomerare:</label>
         <div className={classes.root}>
-        <Rating
-          name="grad_aglomerare"
-          defaultValue={2}
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-          onChangeActive={(event, newHover) => {
-            setHover(newHover);
-          }}
-          getLabelText={(value) => customIcons[value].label}
-          IconContainerComponent={IconContainer}
-        />
-        {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
-      </div>
+          <Rating
+            name="grad_aglomerare"
+            defaultValue={2}
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+              setGradAglomerare(newValue);
+            }}
+            onChangeActive={(event, newHover) => {
+              setHover(newHover);
+            }}
+            getLabelText={(value) => customIcons[value].label}
+            IconContainerComponent={IconContainer}
+          />
+          {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
+        </div>
 
 
 
 
         <label>Nivel satisfactie:</label>
         <div className={classes.root}>
-      <Rating
-        name="hover-feedback"
-        value={value2}
-        precision={0.5}
-        onChange={(event, newValue) => {
-          setValue2(newValue);
-        }}
-        onChangeActive={(event, newHover) => {
-          setHover2(newHover);
-        }}
-      />
-      {value2 !== null && (
-        <Box ml={2}>{labelsat[hover2 !== -1 ? hover2 : value2]}</Box>
-      )}
-    </div>
-        
+          <Rating
+            name="nivel_satisfactie"
+            value={value2}
+            precision={0.5}
+            onChange={(event, newValue) => {
+              setValue2(newValue);
+              setNivelSatisfactie(newValue);
+
+            }}
+            onChangeActive={(event, newHover) => {
+              setHover2(newHover);
+            }}
+          />
+          {value2 !== null && (
+            <Box ml={2}>{labelsat[hover2 !== -1 ? hover2 : value2]}</Box>
+          )}
+        </div>
+
 
         <label>Alte comentarii:</label>
-        <input type='text' name='alte_comentarii' />
+        <input type='text' name='alte_comentarii' onChange={handleAlteComentarii} />
 
-        <button>Submit</button>
+        <input type="button" value="Submit" id="btnSubmit" onClick={validare, fctFrm} />
       </div>
     </div>
 

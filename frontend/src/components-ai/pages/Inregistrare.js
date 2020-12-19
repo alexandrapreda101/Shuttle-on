@@ -30,21 +30,14 @@ function Inregistrare() {
         Axios.post('http://localhost:3001/inregistrare', 
         {username: username, email: email, password: password}).then((response) =>{
             console.log(response);
-            
-            // history.push('/');
+            history.push('/');
         })
 
-        // if(validare()==true){
-        // // history.push('/')
+        if(validare()==true){
+        history.push('/')
         // window.location.reload();
-        // alert('Contul a fost creat! Puteti sa va autentificati!')
-        // }
-        // else {
-        //     //alert('User')
-        // }
-
-
-
+        alert('Contul a fost creat! Puteti sa va autentificati!')
+        }
     }
 
 
