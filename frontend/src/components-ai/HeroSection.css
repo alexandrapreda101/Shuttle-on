@@ -1,9 +1,10 @@
 img {
     width: 100%;
-    height: 100%;
-    position: fixed;
+    height: 110%;
+    position:absolute;
     box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
     z-index: -1;
+    margin-bottom: 50px;
   }
   
   .hero-container {
