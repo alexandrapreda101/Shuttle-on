@@ -9,7 +9,12 @@ const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const session = require("express-session")
 
+<<<<<<< HEAD
 const sequelize = new Sequelize('purple_puffs', 'root', 'password', {
+=======
+
+const sequelize = new Sequelize('purple_puffs', 'root', 'pass', {
+>>>>>>> 1d4a2400cf93bbfd92321c949aa7304b62cee555
     dialect: "mysql",
     host: "localhost"
 });

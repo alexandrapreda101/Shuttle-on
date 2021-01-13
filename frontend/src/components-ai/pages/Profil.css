@@ -1,0 +1,10 @@
+.profil{
+    text-align: center;
+}
+
+.inputText{
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    justify-content: right;
+}
