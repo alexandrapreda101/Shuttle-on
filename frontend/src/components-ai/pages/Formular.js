@@ -133,10 +133,11 @@ export default function Formular() {
       {
         punct_plecare: punct_plecare, punct_sosire: punct_sosire, mijloc_transport: mijloc_transport,
         numarul: numarul, ora_plecarii: ora_plecarii, durata_calatoriei, grad_aglomerare: grad_aglomerare,
-        nivel_satisfactie: nivel_satisfactie, alte_comentarii: alte_comentarii, 
+        nivel_satisfactie: nivel_satisfactie, alte_comentarii: alte_comentarii,
       }).then((response) => {
         console.log(response);
         history.push('/');
+        window.location.reload(false);
       })
 
     if (validare() == true) {

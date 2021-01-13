@@ -23,8 +23,6 @@ function Autentificare() {
     setPassword(e.target.value);
   }
 
-
-
   const validare = () => {
     Axios.get("http://localhost:3001/autentificare", {withCredentials: true}).then((response) => {
       if (response.data.loggedIn == true) {

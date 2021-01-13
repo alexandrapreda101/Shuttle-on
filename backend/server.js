@@ -9,7 +9,6 @@ const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const session = require("express-session")
 
-
 const sequelize = new Sequelize('purple_puffs', 'root', 'password', {
     dialect: "mysql",
     host: "localhost"
@@ -48,7 +47,6 @@ app.use(cors({
     credentials: true
 }))
 
-
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -85,8 +83,8 @@ app.post('/formular', (request, response) => {
     });
 });
 
-app.get('/formular', (request, response) => {
-    Recenzie.findAll().then((results) => {
+app.get('/formular/findAll', (request, response) => {
+    Recenzie.findAll({include:{model:User}}).then((results) => {
         response.status(200).json(results);
     })
 });
@@ -143,13 +141,9 @@ app.delete('/formular/:id', (request, response) => {
     })
 });
 
-
 ////AUTENTIFICARE////
 
-
-
 app.post('/inregistrare', (req, res) => {
-
     const username = req.body.username
     const email = req.body.email
     const password = req.body.password
@@ -160,32 +154,6 @@ app.post('/inregistrare', (req, res) => {
         })
 })
 
-
-
-// app.post('/formular', (req, res) => {
-
-//     const punct_plecare = req.body.punct_plecare
-//     const punct_sosire = req.body.punct_sosire
-//     const mijloc_transport = req.body.mijloc_transport
-//     const numarul = req.body.numarul
-//     const ora_plecarii = req.body.ora_plecarii
-//     const durata_calatoriei = req.body.durata_calatoriei
-//     const grad_aglomerare = req.body.grad_aglomerare
-//     const nivel_satisfactie = req.body.nivel_satisfactie
-//     const alte_comentarii = req.body.alte_comentarii
-
-//     console.log(req.session.user.dataValues.id);
-
-//     const entry = Recenzie.create({
-//         punct_plecare: punct_plecare, punct_sosire: punct_sosire, mijloc_transport: mijloc_transport,
-//         numarul: numarul, ora_plecarii: ora_plecarii, durata_calatoriei: durata_calatoriei, grad_aglomerare: grad_aglomerare,
-//         nivel_satisfactie: nivel_satisfactie, alte_comentarii:" MUIE", userId: 1
-//     },
-//     )
-//     console.log(entry);
-// })
-
-
 app.get("/autentificare", (req, res) => {
     if (req.session.user) {
         res.send({ loggedIn: true, user: req.session.user })
@@ -194,13 +162,10 @@ app.get("/autentificare", (req, res) => {
     }
 })
 
-
 app.post('/autentificare', (req, res) => {
 
     const username = req.body.username
     const password = req.body.password
-
-
 
     User.findOne({ where: { username: username, password: password } })
         .then((result) => {
@@ -216,7 +181,6 @@ app.post('/autentificare', (req, res) => {
                 message: "ERROR"
             });
         });
-
 })
 
 app.get('/logout', (req, res) => {
@@ -227,8 +191,6 @@ app.get('/logout', (req, res) => {
     }
 })
 
-
 app.listen(3001, () => {
     console.log("Server pornit");
 })
-
