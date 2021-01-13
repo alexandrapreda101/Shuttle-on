@@ -52,6 +52,12 @@ function Navbar() {
 
                                 Buna, {LogInStatus}!
 
+                                <Link to='/recenzii'
+                                    className='btn btn--outline btn--medium'
+                                    style={{ textDecoration: 'none' }}>
+                                    Profilul meu
+                            </Link>
+
                                 <Link onClick={logOut}
                                     className='btn btn--primary btn--medium'
                                     style={{ textDecoration: 'none' }}>
