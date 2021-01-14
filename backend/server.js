@@ -90,8 +90,12 @@ app.get('/formular/findAll', (request, response) => {
     })
 });
 
-app.get('/formular/:id', (request, response) => {
-    Recenzie.findByPk(request.params.id).then((result) => {
+app.get('/formular/findIds/:id', (request, response) => {
+    Recenzie.findAll({
+        where: {
+          userId: request.params.id
+        }
+      }).then((result) => {
         if (result) {
             response.status(200).json(result);
         }

@@ -8,7 +8,8 @@ import Axios from 'axios';
 export default function Profil() {
 
   const [LogInStatus, setLoginStatus] = useState('');
-  const [IdStatus, setIdStatus] = useState('');
+  const [IdStatus, setIdStatus] = useState(0);
+  const [listaRecenzii, setListaRecenzii] = useState([]);
 
   Axios.defaults.withCredentials = true;
 
@@ -21,18 +22,18 @@ export default function Profil() {
   useEffect(() => {
     Axios.get("http://localhost:3001/autentificare").then((response) => {
       if (response.data.loggedIn == true) {
-        setLoginStatus(response.data.user.username)
+        setLoginStatus(response.data.user.username);
+        setIdStatus(parseInt(response.data.user.id));
       }
     })
   }, [])
 
+
   useEffect(() => {
-    Axios.get("http://localhost:3001/autentificare").then((response) => {
-      if (response.data.loggedIn == true) {
-        setIdStatus(response.data.user.id)
-      }
+    Axios.get(`http://localhost:3001/formular/findIds/${parseInt(IdStatus)}`).then((response) => {
+      setListaRecenzii(response.data);
     })
-  }, [])
+  }, [IdStatus])
 
   const logOut = () => {
 
@@ -87,7 +88,6 @@ export default function Profil() {
       alert('Logati-va cu noile date!')
       logOut()
     }
-
   }
 
   const updatepassword = () => {
@@ -134,7 +134,7 @@ export default function Profil() {
 
   return (
     <div className='profil'>
-      <h1>Buna, {LogInStatus}!</h1>
+      <h1>Buna,{LogInStatus}!</h1>
       <h2>Schimbati datele de logare:</h2>
       <div className='inputText'>
         <label for="username">Username: </label>
@@ -148,11 +148,25 @@ export default function Profil() {
         <label for="password">Password: </label>
         <input type="text" id="password" onChange={handleChangePassword} />
         <input type="button" value="Confirm Password" id="btnPass" onClick={validarepassword, updatepassword} />
+        {/* <input type="button" value="Vezi Review-uri" id="btnRev" onClick={seeReviews} /> */}
       </div>
 
 
       <input type="button" value="Dezactivare Cont" id="btnPass" onClick={deleteuser} />
+
+      <h2 class="recenzieTitlu">Recenzii</h2>
+      {listaRecenzii.map((val) => {
+        return (
+          <div className="recenzie">
+            Punct plecare : {val.punct_plecare} | Punct sosire : {val.punct_sosire}
+                     |  Mijloc transport: {val.mijloc_transport}| Numarul: {val.numarul}
+                     |  Ora plecarii: {val.ora_plecarii}| Durata calatoriei: {val.durata_calatoriei}
+                     |  Grad aglomerare: {val.grad_aglomerare}| Nivel satisfactie: {val.nivel_satisfactie}
+                     |  Alte comentarii:  {val.alte_comentarii} </div>
+        )
+      })}
     </div>
+
 
   );
 }
