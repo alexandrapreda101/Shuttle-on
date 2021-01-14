@@ -52,6 +52,7 @@ function Navbar() {
 
                                 Buna, {LogInStatus}!
 
+                                
                                 <Link to='/recenzii'
                                     className='btn btn--outline btn--medium'
                                     style={{ textDecoration: 'none' }}>

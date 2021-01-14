@@ -60,49 +60,46 @@ export default function Profil() {
 
   const deleteuser = () => {
     Axios.delete(`http://localhost:3001/inregistrare/${IdStatus}`);
-
     history.push('/')
     alert('Contul a fost sters!')
+    logOut()
   }
 
   const updateuser = () => {
-    Axios.put(`http://localhost:3001/inregistrare/username/${IdStatus}`,
-      { username: username }).then((response) => {
-        console.log(response);
-        history.push('/');
-      })
-
     if (validareusername() == true) {
+      Axios.put(`http://localhost:3001/inregistrare/username/${IdStatus}`,
+        { username: username }).then((response) => {
+          console.log(response);
+        })
+      alert('Logati-va cu noile date!')
+      logOut()
+    }
+  }
+
+  const updateemail = () => {
+
+    if (validareemail() == true) {
+      Axios.put(`http://localhost:3001/inregistrare/username/${IdStatus}`,
+        { email: email }).then((response) => {
+          console.log(response);
+          history.push('/');
+        })
       alert('Logati-va cu noile date!')
       logOut()
     }
 
   }
 
-  const updateemail = () => {
-    Axios.put(`http://localhost:3001/inregistrare/username/${IdStatus}`,
-      { email: email }).then((response) => {
-        console.log(response);
-        history.push('/');
-      })
-
-      if (validareemail() == true) {
-        alert('Logati-va cu noile date!')
-        logOut()
-      }
-  }
-
   const updatepassword = () => {
-    Axios.put(`http://localhost:3001/inregistrare/username/${IdStatus}`,
-      { password: password }).then((response) => {
-        console.log(response);
-        history.push('/');
-      })
-
-      if (validarepassword() == true) {
-        alert('Logati-va cu noile date!')
-        logOut()
-      }
+    if (validarepassword() == true) {
+      Axios.put(`http://localhost:3001/inregistrare/username/${IdStatus}`,
+        { password: password }).then((response) => {
+          console.log(response);
+          history.push('/');
+        })
+      alert('Logati-va cu noile date!')
+      logOut()
+    }
   }
 
 
@@ -112,6 +109,8 @@ export default function Profil() {
       alert('Numele de utilizator trebuie sa aiba cel putin 3 caractere')
       return false;
     }
+
+    return true
   }
 
   function validareemail() {
@@ -119,6 +118,8 @@ export default function Profil() {
       alert('Email-ul nu este valid')
       return false;
     }
+
+    return true
   }
 
   function validarepassword() {
@@ -150,7 +151,7 @@ export default function Profil() {
       </div>
 
 
-      <input type="button" value="Dezactivare Cont" id="btnPass" onClick={deleteuser, logOut} />
+      <input type="button" value="Dezactivare Cont" id="btnPass" onClick={deleteuser} />
     </div>
 
   );

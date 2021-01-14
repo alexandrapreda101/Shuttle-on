@@ -40,7 +40,6 @@ function Inregistrare() {
         }
     }
 
-
     function validare() {
         // Username
         if (username.replace(/\s/g, "").length < 3 ||
