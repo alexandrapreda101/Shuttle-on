@@ -9,7 +9,7 @@ const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const session = require("express-session")
 
-const sequelize = new Sequelize('purple_puffs', 'root', 'password', {
+const sequelize = new Sequelize('purple_puffs', 'root', 'pass', {
 
     dialect: "mysql",
     host: "localhost"
@@ -154,6 +154,104 @@ app.post('/inregistrare', (req, res) => {
             console.log(err);
         })
 })
+
+app.delete('/inregistrare/:id', (request, response) => {
+    User.findByPk(request.params.id).then((user) => {
+        if (user) {
+            user.destroy().then((result) => {
+                response.status(204).send()
+            }).catch((err) => {
+                console.log(err);
+                response.status(500).send("Eroare la baza de date");
+            })
+        }
+        else {
+            response.status(404).send('Resursa nu a fost gasita')
+        }
+    }).catch((err) => {
+        console.log(err);
+        response.status(500).send("Eroare la baza de date");
+    })
+})
+
+
+app.put('/inregistrare/username/:id', (request, response) => {
+    User.findByPk(request.params.id).then((user) => {
+        if (user) {
+            user.update(request.body).then((result) => {
+                const username = request.body.username
+            
+                const entry = User.update({ username: username },
+                    (err, result) => {
+                        console.log(err);
+                    })
+
+            }).catch((err) => {
+                console.log(err);
+                response.status(500).send("Eroare la baza de date");
+            })
+        }
+        else {
+            response.status(404).send('Resursa nu a fost gasita')
+        }
+    }).catch((err) => {
+        console.log(err);
+        response.status(500).send("Eroare la baza de date");
+    })
+});
+
+app.put('/inregistrare/email/:id', (request, response) => {
+    User.findByPk(request.params.id).then((user) => {
+        if (user) {
+            user.update(request.body).then((result) => {
+                const email = request.body.email
+            
+                const entry = User.update({ email: email },
+                    (err, result) => {
+                        console.log(err);
+                    })
+
+            }).catch((err) => {
+                console.log(err);
+                response.status(500).send("Eroare la baza de date");
+            })
+        }
+        else {
+            response.status(404).send('Resursa nu a fost gasita')
+        }
+    }).catch((err) => {
+        console.log(err);
+        response.status(500).send("Eroare la baza de date");
+    })
+});
+
+app.put('/inregistrare/password/:id', (request, response) => {
+    User.findByPk(request.params.id).then((user) => {
+        if (user) {
+            user.update(request.body).then((result) => {
+                const password = request.body.password
+            
+                const entry = User.update({ password: password },
+                    (err, result) => {
+                        console.log(err);
+                    })
+
+            }).catch((err) => {
+                console.log(err);
+                response.status(500).send("Eroare la baza de date");
+            })
+        }
+        else {
+            response.status(404).send('Resursa nu a fost gasita')
+        }
+    }).catch((err) => {
+        console.log(err);
+        response.status(500).send("Eroare la baza de date");
+    })
+});
+
+
+
 
 app.get("/autentificare", (req, res) => {
     if (req.session.user) {
