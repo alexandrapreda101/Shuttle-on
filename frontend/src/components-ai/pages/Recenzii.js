@@ -13,6 +13,8 @@ export default function Profil() {
 
   Axios.defaults.withCredentials = true;
 
+  const [comentariu,setComentariu] = useState('');
+
   const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -59,6 +61,10 @@ export default function Profil() {
     setPassword(e.target.value);
   }
 
+  const handleChangeComentariu = (e) => {
+    setComentariu(e.target.value);
+  }
+
   const deleteuser = () => {
     Axios.delete(`http://localhost:3001/inregistrare/${IdStatus}`);
     history.push('/')
@@ -101,6 +107,20 @@ export default function Profil() {
       logOut()
     }
   }
+
+  ////////////
+  
+  const updatecomentariu = () => {
+      Axios.put(`http://localhost:3001/inregistrare/username/${IdStatus}`,
+        { comentariu: comentariu }).then((response) => {
+          console.log(response);
+        })
+      alert('S-a editat comentariul')
+      logOut()
+  }
+
+
+  ///////////////
 
 
   function validareusername() {
@@ -162,11 +182,19 @@ export default function Profil() {
                      |  Mijloc transport: {val.mijloc_transport}| Numarul: {val.numarul}
                      |  Ora plecarii: {val.ora_plecarii}| Durata calatoriei: {val.durata_calatoriei}
                      |  Grad aglomerare: {val.grad_aglomerare}| Nivel satisfactie: {val.nivel_satisfactie}
-                     |  Alte comentarii:  {val.alte_comentarii} </div>
+                     |  Alte comentarii:  {val.alte_comentarii}
+
+            <label for="comentariu">Editare Comentariu: </label>
+            <input type="text" id="comentariu" onChange={handleChangeComentariu} />
+            <input type="button" value="Editare Comentariu" id="edit_com" onClick={updatecomentariu} />
+            <input type="button" value="Sterge Recenzie" id="del_rec" onClick={updatepassword} />
+
+          </div>
+
         )
+
       })}
     </div>
-
 
   );
 }

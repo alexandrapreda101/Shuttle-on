@@ -66,9 +66,10 @@ function Autentificare() {
   return (
     <div className='autentificare'>
       <h1 name={'Inregistrare'} />
+      <img src="/cover-login.jpg" className='image-cover'/>
 
       <h1>Autentificati-va:</h1>
-      <div className='inputText'>
+      <div className='container'>
         <label for="username">Username: </label>
         <input type="text" id="username" onChange={handleChangeUsername} />
         <label for="password">Password: </label>
