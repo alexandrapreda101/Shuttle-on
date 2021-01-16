@@ -29,25 +29,24 @@ function HeroSection() {
     return (
         <div className='hero-container'>
             {/*<video src="/cover-mainpage.mp4" autoPlay loop muted />*/}
-            <img src="/cover-photo5.jpg" />
-            <h1>
-                Shuttle On
-            </h1>
+            <img src="/cover-photoV1.png" />
+
             <div className='hero-btns'>
                 {LogInStatus && (
                     <Link to='/formular'
-                        className='btn btn--primary btn--medium'
+                        className='btn btn--secondary btn--large'
                         style={{ textDecoration: 'none' }}>
                         Scrie o recenzie!
                     </Link>
                 )}
                 {!LogInStatus && (
                     <Link onClick={isLoggedIn}
-                        className='btn btn--primary btn--medium'
+                        className='btn btn--secondary btn--large'
                         style={{ textDecoration: 'none' }}>
                         Scrie o recenzie!
                     </Link>
                 )}
+
 
 
             </div>

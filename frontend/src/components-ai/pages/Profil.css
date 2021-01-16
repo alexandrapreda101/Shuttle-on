@@ -1,10 +1,32 @@
 .profil{
-    text-align: center;
+    text-align: left;
 }
 
-.inputText{
-    display: flex;
-    flex-direction: column;
-    align-items: right;
-    justify-content: right;
+.button-form {
+    color: #73928d;
+    padding: 5px;
+    margin-left: 10px;
+    background-color: white;
+    border: transparent;
+    border-radius: 5px;
+}
+
+.button-form:hover {
+    animation: 1.5s ease-in-out;
+    color: white;
+    padding: 5px;
+    margin-left: 10px;
+    background-color: #73928d;
+    border: transparent;
+    border-radius: 5px;
+    box-shadow: 0 9px 50px hsla(194, 67%, 75%, 0.31);
+}
+
+.btnDezactivare {
+    margin-left: 15%;
+}
+
+.userecenzi {
+    margin-top: -50px;
+    padding-bottom: 50px;
 }

@@ -152,70 +152,82 @@ export default function Formular() {
 
   return (
     <div className='formular'>
-      <h1>Formular</h1>
-      <div className='inputText'>
-        <label>Punct plecare:</label>
-        <input type='text' name='punct_plecare' onChange={handlePunctPlecare} />
-        <label>Punct sosire:</label>
-        <input type='text' name='punct_sosire' onChange={handlePunctSosire} />
-        <label>Mijloc de transport:</label>
-        <input type='text' name='mijloc_transport' onChange={handleMijlocTransport} />
-        <label>Numarul:</label>
-        <input type='text' name='numarul' onChange={handleNumar} />
-        <label>Ora plecarii:</label>
-        <input type='text' name='ora_plecarii' onChange={handleOraPlecarii} />
-        <label>Durata calatoriei:</label>
-        <input type='text' name='durata_calatoriei' onChange={handleDurataCalatoriei} />
+      <form>
+        <div class="con">
+          <header class="head-form">
+            <h2>Formular</h2>
+            <p>Va rugam completati formularul cu opinia dumneavoastra.</p>
+          </header>
+        </div>
 
+        <div class="field-set">
 
-        <label>Grad aglomerare:</label>
-        <div className={classes.root}>
-          <Rating
-            name="grad_aglomerare"
-            defaultValue={2}
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-              setGradAglomerare(newValue);
-            }}
-            onChangeActive={(event, newHover) => {
-              setHover(newHover);
-            }}
-            getLabelText={(value) => customIcons[value].label}
-            IconContainerComponent={IconContainer}
-          />
-          {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
+          <input class="form-input" name="punct_plecare" type="text" placeholder="Punct Plecare" onChange={handlePunctPlecare}></input>
+          <input class="form-input" name="punct_sosire" type="text" placeholder="Punct Sosire" onChange={handlePunctSosire}></input>
+          <input class="form-input" name="mijloc_transport" type="text" placeholder="Mijloc Transport" onChange={handleMijlocTransport}></input>
+          <input class="form-input" name="numarul" type="text" placeholder="Numar" onChange={handleNumar}></input>
+          <input class="form-input" name="ora_plecarii" type="text" placeholder="Ora Plecarii" onChange={handleOraPlecarii}></input>
+          <input class="form-input" name="durata_calatoriei" type="text" placeholder="Durata Calatoriei" onChange={handleDurataCalatoriei}></input>
+
         </div>
 
 
-
-
-        <label>Nivel satisfactie:</label>
-        <div className={classes.root}>
-          <Rating
-            name="nivel_satisfactie"
-            value={value2}
-            precision={0.5}
-            onChange={(event, newValue) => {
-              setValue2(newValue);
-              setNivelSatisfactie(newValue);
-
-            }}
-            onChangeActive={(event, newHover) => {
-              setHover2(newHover);
-            }}
-          />
-          {value2 !== null && (
-            <Box ml={2}>{labelsat[hover2 !== -1 ? hover2 : value2]}</Box>
-          )}
+        <div className="nivel">
+          <label>Grad aglomerare:</label>
+          <div className="icons">
+            <div className={classes.root}>
+              <Rating
+                name="grad_aglomerare"
+                defaultValue={2}
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                  setGradAglomerare(newValue);
+                }}
+                onChangeActive={(event, newHover) => {
+                  setHover(newHover);
+                }}
+                getLabelText={(value) => customIcons[value].label}
+                IconContainerComponent={IconContainer}
+              />
+              {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
+            </div>
+          </div>
         </div>
 
+        <div className="nivel">
+          <label>Nivel satisfactie:</label>
 
-        <label>Alte comentarii:</label>
-        <input type='text' name='alte_comentarii' onChange={handleAlteComentarii} />
+          <div className="icons">
+            <div className={classes.root}>
+              <Rating
+                name="nivel_satisfactie"
+                value={value2}
+                precision={0.5}
+                onChange={(event, newValue) => {
+                  setValue2(newValue);
+                  setNivelSatisfactie(newValue);
 
-        <input type="button" value="Submit" id="btnSubmit" onClick={validare, fctFrm} />
-      </div>
+                }}
+                onChangeActive={(event, newHover) => {
+                  setHover2(newHover);
+                }}
+              />
+              {value2 !== null && (
+                <Box ml={2}>{labelsat[hover2 !== -1 ? hover2 : value2]}</Box>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <input class="form-input" id="alte_comentarii" type="text" placeholder="Alte Comentarii" onChange={handleAlteComentarii}></input>
+
+
+        <button class="log-in" id="btnSubmit" onClick={validare, fctFrm}> Trimite </button>
+      </form>
+
+
+
     </div>
 
   );

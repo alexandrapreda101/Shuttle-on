@@ -13,7 +13,7 @@ export default function Profil() {
 
   Axios.defaults.withCredentials = true;
 
-  const [comentariu,setComentariu] = useState('');
+  const [comentariu, setComentariu] = useState('');
 
   const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -109,14 +109,14 @@ export default function Profil() {
   }
 
   ////////////
-  
+
   const updatecomentariu = () => {
-      Axios.put(`http://localhost:3001/inregistrare/username/${IdStatus}`,
-        { comentariu: comentariu }).then((response) => {
-          console.log(response);
-        })
-      alert('S-a editat comentariul')
-      logOut()
+    Axios.put(`http://localhost:3001/inregistrare/username/${IdStatus}`,
+      { comentariu: comentariu }).then((response) => {
+        console.log(response);
+      })
+    alert('S-a editat comentariul')
+    logOut()
   }
 
 
@@ -154,46 +154,51 @@ export default function Profil() {
 
   return (
     <div className='profil'>
-      <h1>Buna,{LogInStatus}!</h1>
-      <h2>Schimbati datele de logare:</h2>
-      <div className='inputText'>
-        <label for="username">Username: </label>
-        <input type="text" id="username" onChange={handleChangeUsername} />
-        <input type="button" value="Confirm Username" id="btnUsername" onClick={validareusername, updateuser} />
 
-        <label for="email">Email: </label>
-        <input type="text" id="email" onChange={handleChangeEmail} />
-        <input type="button" value="Confirm Email" id="btnEmail" onClick={validareemail, updateemail} />
+      <form>
+        <div class="con">
+          <header class="head-form">
+            <h2>Buna,{LogInStatus}!</h2>
+            <p>Va rugam completati formularul pentru a va actualiza datele</p>
+          </header>
+        </div>
 
-        <label for="password">Password: </label>
-        <input type="text" id="password" onChange={handleChangePassword} />
-        <input type="button" value="Confirm Password" id="btnPass" onClick={validarepassword, updatepassword} />
-        {/* <input type="button" value="Vezi Review-uri" id="btnRev" onClick={seeReviews} /> */}
+        <div class="field-set">
+
+          <input class="form-input" type="text" placeholder="Username" id="username" onChange={handleChangeUsername} />
+          <input class="button-form" type="button" value="Change Username" onClick={validareusername, updateuser} />
+
+          <input class="form-input" id="email" type="text" placeholder="Email" onChange={handleChangeEmail}></input>
+          <input class="button-form" type="button" value="Change Email" onClick={validareemail, updateemail} />
+
+          <input class="form-input" id="password" type="text" placeholder="Password" onChange={handleChangePassword}></input>
+          <input class="button-form" type="button" value="Confirm Password" onClick={validarepassword, updatepassword} />
+
+        </div>
+
+        <button class="btnDezactivare" id="btnPass" onClick={deleteuser}> Dezactivare Cont </button>
+      </form>
+
+      <div class="userecenzi">
+
+        <h2 class="recenzieTitlu">Recenzii</h2>
+        {listaRecenzii.map((val) => {
+          return (
+
+            <div className="recenzie">
+              <span ><strong>Punct plecare :</strong></span> {val.punct_plecare}<span className="spans"><strong> Punct sosire : </strong></span>{val.punct_sosire}
+              <span className="spans"><strong>  Mijloc transport: </strong></span>{val.mijloc_transport}<span className="spans"><strong> Numarul: </strong></span>{val.numarul}
+              <span ><strong> <br></br> Grad Aglomerare: </strong></span> {val.grad_aglomerare}<span className="otherspans"><strong> Durata calatoriei: </strong></span>{val.durata_calatoriei}
+              <span className="otherspans"><strong>  Ora plecarii:</strong></span> {val.ora_plecarii}<span className="otherspans"><strong> Nivel satisfactie:</strong></span> {val.nivel_satisfactie}
+              <br></br><span ><strong> Alte comentarii:</strong></span>  {val.alte_comentarii}
+
+            </div>
+
+          )
+
+        })}
       </div>
 
-
-      <input type="button" value="Dezactivare Cont" id="btnPass" onClick={deleteuser} />
-
-      <h2 class="recenzieTitlu">Recenzii</h2>
-      {listaRecenzii.map((val) => {
-        return (
-          <div className="recenzie">
-            Punct plecare : {val.punct_plecare} | Punct sosire : {val.punct_sosire}
-                     |  Mijloc transport: {val.mijloc_transport}| Numarul: {val.numarul}
-                     |  Ora plecarii: {val.ora_plecarii}| Durata calatoriei: {val.durata_calatoriei}
-                     |  Grad aglomerare: {val.grad_aglomerare}| Nivel satisfactie: {val.nivel_satisfactie}
-                     |  Alte comentarii:  {val.alte_comentarii}
-
-            <label for="comentariu">Editare Comentariu: </label>
-            <input type="text" id="comentariu" onChange={handleChangeComentariu} />
-            <input type="button" value="Editare Comentariu" id="edit_com" onClick={updatecomentariu} />
-            <input type="button" value="Sterge Recenzie" id="del_rec" onClick={updatepassword} />
-
-          </div>
-
-        )
-
-      })}
     </div>
 
   );

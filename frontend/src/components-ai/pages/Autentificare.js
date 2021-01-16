@@ -24,7 +24,7 @@ function Autentificare() {
   }
 
   const validare = () => {
-    Axios.get("http://localhost:3001/autentificare", {withCredentials: true}).then((response) => {
+    Axios.get("http://localhost:3001/autentificare", { withCredentials: true }).then((response) => {
       if (response.data.loggedIn == true) {
         return false;
       }
@@ -65,18 +65,26 @@ function Autentificare() {
 
   return (
     <div className='autentificare'>
-      <h1 name={'Inregistrare'} />
-      <img src="/cover-login.jpg" className='image-cover'/>
 
-      <h1>Autentificati-va:</h1>
-      <div className='container'>
-        <label for="username">Username: </label>
-        <input type="text" id="username" onChange={handleChangeUsername} />
-        <label for="password">Password: </label>
-        <input type="text" id="password" onChange={handleChangePassword} />
-      </div>
+      <form>
+        <div class="con">
+          <header class="head-form">
+            <h2>Autentificare</h2>
+            <p>Autentificati-va aici cu Username-ul si Parola</p>
+          </header>
+        </div>
 
-      <input type="button" value="Log in" id="btnSignUp" onClick={fctAut} />
+        <div class="field-set">
+
+          <input class="form-input" id="username" type="text" placeholder="Username" onChange={handleChangeUsername}></input>
+          <input class="form-input" type="password" placeholder="Parola" id="password" name="password" onChange={handleChangePassword} />
+        
+        </div>
+
+        <button class="log-in" id="btnSignUp" onClick={fctAut}> Autentificare </button>
+      </form>
+
+
     </div>
   );
 }

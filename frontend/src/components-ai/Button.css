@@ -1,5 +1,6 @@
 :root {
     --primary: #fff;
+    --secondary: #73928d;
 }
 
 .btn {
@@ -16,6 +17,15 @@
     background-color: var(--primary);
     color: #242424;
     border: 1px solid var(--primary);
+    box-shadow: 10px 9px 50px hsla(194, 67%, 75%, 0.31);
+}
+
+.btn--secondary{
+    background-color: var(--secondary);
+    box-shadow: 10px 7px 10px #85a19d8f;
+    color: #fff;
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
 }
 
 .btn--outline{
@@ -24,6 +34,7 @@
     padding: 8px 20px;
     border: 1px solid var(--primary);
     transition: all 0.3s ease-out;
+    box-shadow: 10px 9px 50px hsla(194, 67%, 75%, 0.31);
 }
 
 .btn--medium{
@@ -32,8 +43,8 @@
 }
 
 .btn--large{
-    padding: 12px 26px;
-    font-size: 20px;
+    padding: 10px 50px;
+    font-size: 40px;
 }
 
 .btn--medium:hover, .btn--large:hover{
@@ -49,4 +60,14 @@
     border: 1px solid #fff;
     transition: all 0.3s ease-out;
     transition: 250ms;
+}
+
+.btn--secondary:hover{
+    background-color: var(--primary);
+    box-shadow: 10px 7px 10px #85a19d8f;
+    color: #73928d;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    transition: all 0.5s ease-out;
+    transition: 550ms;
 }

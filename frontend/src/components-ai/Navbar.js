@@ -40,7 +40,7 @@ function Navbar() {
         <>
             <nav className="navbar">
                 <div className="navbar-container">
-                    <Link to='/' className="navbar-logo" style={{ fontFamily: 'Boldenvandemo-K7dZZ' }}>
+                    <Link to='/' className="navbar-logo">
                         Shuttle On
                     </Link>
 
@@ -52,7 +52,6 @@ function Navbar() {
 
                                 Buna, {LogInStatus}!
 
-                                
                                 <Link to='/recenzii'
                                     className='btn btn--outline btn--medium'
                                     style={{ textDecoration: 'none' }}>
@@ -81,7 +80,7 @@ function Navbar() {
                                 <Link to='/inregistrare'
                                     className='btn btn--primary btn--medium'
                                     style={{ textDecoration: 'none' }}>
-                                    Înregistrează-te!
+                                    Înregistreaza-te!
                             </Link>
 
                             </li>)}

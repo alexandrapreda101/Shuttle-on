@@ -10,7 +10,7 @@ function Inregistrare() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    
+
     let history = useHistory();
 
     const handleChangeUsername = (e) => {
@@ -27,16 +27,16 @@ function Inregistrare() {
     }
 
     const fctInreg = () => {
-        Axios.post('http://localhost:3001/inregistrare', 
-        {username: username, email: email, password: password}).then((response) =>{
-            console.log(response);
-            history.push('/');
-        })
+        Axios.post('http://localhost:3001/inregistrare',
+            { username: username, email: email, password: password }).then((response) => {
+                console.log(response);
+                history.push('/');
+            })
 
-        if(validare()==true){
-        history.push('/')
-        // window.location.reload();
-        alert('Contul a fost creat! Puteti sa va autentificati!')
+        if (validare() == true) {
+            history.push('/')
+            // window.location.reload();
+            alert('Contul a fost creat! Puteti sa va autentificati!')
         }
     }
 
@@ -74,19 +74,26 @@ function Inregistrare() {
         <div className='inregistrare'>
             <h1 name={'Inregistrare'} />
 
-            <h1>Completati formularul:</h1>
-            <div className='inputText'>
-                <label for="username">Username: </label>
-                <input type="text" id="username" onChange={handleChangeUsername} />
-                <label for="email">Email: </label>
-                <input type="text" id="email" onChange={handleChangeEmail} />
-                <label for="password">Password: </label>
-                <input type="text" id="password" onChange={handleChangePassword} />
-                <label for="confirmPassword">Confirm password: </label>
-                <input type="text" id="confirmPassword" onChange={handleChangeConfirmPassword} />
-            </div>
+            <form>
+                <div class="con">
+                    <header class="head-form">
+                        <h2>Inregistrati-va!</h2>
+                        <p>Completati formularul de mai jos cu datele dumneavoastra.</p>
+                    </header>
+                </div>
 
-            <input type="button" value="Sign up" id="btnSignUp" onClick={validare,fctInreg}/>
+                <div class="field-set">
+
+                    <input class="form-input" id="username" type="text" placeholder="Username" onChange={handleChangeUsername}></input>
+                    <input class="form-input" id="email" type="text" placeholder="Email" onChange={handleChangeEmail}></input>
+
+                    <input class="form-input" type="password" placeholder="Parola" id="password" name="password" onChange={handleChangePassword} />
+                    <input class="form-input" type="password" placeholder="Confirmare Parola" id="confirmPassword" name="confirm password" onChange={handleChangeConfirmPassword} />
+
+                </div>
+
+                <button class="log-in" id="btnSignUp" onClick={validare, fctInreg}> Inregistrare </button>
+            </form>
 
         </div>
     );

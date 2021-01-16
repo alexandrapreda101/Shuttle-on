@@ -1,35 +1,70 @@
+.home{
+    /* background-image: linear-gradient(-225deg, #E3FDF5 0%, #73928d 100%);
+    background-image: linear-gradient(to top, #E3FDF5 0%, #73928d 100%); */
+    padding-bottom: 100px;
+}
+
 
 .herosection{
-    padding-bottom: 250px;
+    padding-bottom: 25%;
 }
 .recenzieTitlu{
     text-align: center;
+    color: white;
 }
 
-
-.tabs {
-    padding-bottom: 250px;
-    padding-left: 300px;
-    padding-right: 300px;
-    background-color: white;
-}
-
-.span{
-    display: inline-block;
-}
 .recenzie{
-    padding-left: 10px;
+    padding-left: 20px;
     padding-right: 10px;
     padding-bottom:10px;
-    padding-top:  3px;
+    padding-top:  10px;
     margin-top: 10px;
-    display: flex;
+    display: inline-block;
     flex-direction: column;
     justify-content: center;
     width: 1000px;
     height: 100px;
-    border:1px solid black;
-   
+
+    border:2px solid #73928d;
+    background-color: white;   
+    text-align: left;
+
+    border-radius: 5px;
+    margin: 2% auto;
+    box-shadow: 10px 10px 10px #73928d;
+    background-image: linear-gradient(-225deg, #fff 50%, #E3FDF5 50%);
+    margin-bottom: 10px;
     border-radius: 1em;
     margin-left: 15%;
+
+
+    border-radius: 1em;
+    margin-left: 15%;
+    font-size: 20px;
+    justify-content: space-between
 }
+
+.spans{
+    display:inline-flex;
+    padding-left: 60px;
+    padding-right: 10px;
+}
+.otherspans{
+    display:inline-flex;
+    padding-left: 90px;
+    padding-right: 10px;
+}
+
+.search {
+    margin-top: 1%;
+    margin-left: 21%;
+    width: 850px;
+    height: 50px;
+    padding: 0px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding-left: 35px;
+    box-shadow: 10px 10px 10px #73928d;
+    border: transparent !important;
+}
+
