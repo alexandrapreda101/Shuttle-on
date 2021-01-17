@@ -158,7 +158,7 @@ export default function Profil() {
       <form>
         <div class="con">
           <header class="head-form">
-            <h2>Buna,{LogInStatus}!</h2>
+            <h2>Buna, {LogInStatus}!</h2>
             <p>Va rugam completati formularul pentru a va actualiza datele</p>
           </header>
         </div>
