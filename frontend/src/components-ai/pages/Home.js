@@ -14,6 +14,7 @@ function Home() {
             setListaRecenzii(response.data);
         })
     }, [])
+    let myUserName = "";
 
     return (
         <div class='home'>
@@ -33,6 +34,12 @@ function Home() {
             </div>
 
             {listaRecenzii.map((val, key) => {
+                if(val.user){
+                    myUserName= val.user.username;
+                }
+                else{
+                    myUserName= "Anonim";
+                }
                 if (cautareCuvant == "") {
 
                     return <div className="recenzie" key={key}>
@@ -40,7 +47,7 @@ function Home() {
                         <span className="spans"><strong>  Mijloc transport: </strong></span>{val.mijloc_transport}<span className="spans"><strong> Numarul: </strong></span>{val.numarul}
                         <span ><strong> <br></br> Grad Aglomerare: </strong></span> {val.grad_aglomerare}<span className="otherspans"><strong> Durata calatoriei: </strong></span>{val.durata_calatoriei}
                         <span className="otherspans"><strong>  Ora plecarii:</strong></span> {val.ora_plecarii}<span className="otherspans"><strong> Nivel satisfactie:</strong></span> {val.nivel_satisfactie}
-                        <br></br><span ><strong> Alte comentarii:</strong></span>  {val.alte_comentarii}</div>;
+                        <br></br><span ><strong> Alte comentarii:</strong></span>  {val.alte_comentarii} <span className = "spans" ><strong> Nume utilizator:</strong></span>  {myUserName}</div>;
                 }
                 else if (val.punct_plecare.toLowerCase().includes(cautareCuvant.toLowerCase()) ||
                     val.punct_plecare.toLowerCase().includes(cautareCuvant.toLowerCase()) ||
@@ -53,7 +60,7 @@ function Home() {
                         <span className="spans"><strong>  Mijloc transport: </strong></span>{val.mijloc_transport}<span className="spans"><strong> Numarul: </strong></span>{val.numarul}
                         <span ><strong> <br></br> Grad Aglomerare: </strong></span> {val.grad_aglomerare}<span className="otherspans"><strong> Durata calatoriei: </strong></span>{val.durata_calatoriei}
                         <span className="otherspans"><strong>  Ora plecarii:</strong></span> {val.ora_plecarii}<span className="otherspans"><strong> Nivel satisfactie:</strong></span> {val.nivel_satisfactie}
-                        <br></br><span ><strong> Alte comentarii:</strong></span>  {val.alte_comentarii}</div>;
+                        <br></br><span ><strong> Alte comentarii:</strong></span>  {val.alte_comentarii} <span className = "spans" ><strong> Nume utilizator:</strong></span>  {myUserName}</div>;
                 }
             })}
         </div>

@@ -45,8 +45,6 @@ function Autentificare() {
           setLoginStatus(response.data.username)
           window.location.reload();
         }
-
-
         console.log(response);
       })
 
@@ -81,7 +79,8 @@ function Autentificare() {
         
         </div>
 
-        <button class="log-in" id="btnSignUp" onClick={fctAut}> Autentificare </button>
+        {/* <button class="log-in" id="btnSignUp" onClick={fctAut}> Autentificare </button> */}
+        <input type="button" value="Log in" id="btnSignUp" onClick={fctAut} />
       </form>
 
 

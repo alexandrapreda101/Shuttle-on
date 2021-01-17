@@ -9,7 +9,7 @@ const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const session = require("express-session")
 
-const sequelize = new Sequelize('purple_puffs', 'root', 'pass', {
+const sequelize = new Sequelize('purple_puffs', 'root', 'password', {
 
     dialect: "mysql",
     host: "localhost"
@@ -272,10 +272,13 @@ app.post('/autentificare', (req, res) => {
 
     User.findOne({ where: { username: username, password: password } })
         .then((result) => {
-            if (result) {
-                req.session.user = result
-                res.status(200).send(result)
-            } else {
+            try {
+                if (result) {
+                    req.session.user = result
+                    res.status(200).send(result)
+                }
+                
+            } catch (error) {
                 res.status(401).send({ message: "Parola sau username-ul este gresit!" })
             }
 
@@ -283,6 +286,7 @@ app.post('/autentificare', (req, res) => {
             res.status(500).send({
                 message: "ERROR"
             });
+            
         });
 })
 
