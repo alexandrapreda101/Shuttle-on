@@ -80,7 +80,7 @@ function Autentificare() {
         </div>
 
         {/* <button class="log-in" id="btnSignUp" onClick={fctAut}> Autentificare </button> */}
-        <input type="button" value="Log in" id="btnSignUp" onClick={fctAut} />
+        <input type="buttonaut" value="Autentificare" id="btnSignUp" onClick={fctAut} />
       </form>
 
 

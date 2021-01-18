@@ -20,6 +20,7 @@
     border: transparent;
     border-radius: 5px;
     box-shadow: 0 9px 50px hsla(194, 67%, 75%, 0.31);
+    transition: all 0.3s ease-out;
 }
 
 .btnDezactivare {
